@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head  th:fragment="head">
+    <title>Java eshop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/eshop.css" th:href="@{/css/eshop.css}"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+</head>
+
+<body>
+    <nav th:fragment="header" class="dui-header navbar navbar-inverse navbar-fixed-top"
+         role="navigation">
+        <div class="">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand"
+                   href="/">eshop</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-left">
+
+                    <li><a href="/products" th:href="@{/products}">List Product</a></li>
+                    <li><a href="/products/create" th:href="@{/products/create}">Create Product</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="body">
+        <div class="row">
+            This is the main context
+        </div>
+    </div>
+
+
+    <footer th:fragment="footer" class="footer">
+
+        <div class="row footer-top">
+            <div class="col-md-12 footer-row">
+            </div>
+
+            <div class="col-md-12 footer-row">
+                <span class="footer-row-title">联系方式：</span> <span>客服电话：</span><span>电子邮箱：</span><span> 公司地址：
+					</span>
+            </div>
+
+            <div class="col-md-12 footer-row">
+            </div>
+        </div>
+
+        <div class="row footer-bottom">
+            <div class="col-md-12" >
+                <span th:text="${'&#169;&#160; ' + #calendars.format(#calendars.createNow(), 'yyyy')}"></span>
+                &#160;Sydney Summit Technology Development PTY. LTD
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>

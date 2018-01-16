@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+    <title>Java eshop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <div th:replace="layout/layout :: header"></div>
+
+
+    <div class="body">
+        <div class="row">
+
+            <script>
+                $(document).ready(function() {
+
+                  $('a.deleteLink').click(function() {
+                    swal({
+                      title : 'Confirm',
+                      text : "Are you sue to delete?",
+                      type : 'warning',
+                      showCancelButton : true,
+                      confirmButtonColor : '#3085d6',
+                      cancelButtonColor : '#d33',
+                      confirmButtonText : 'Yes',
+                      cancelButtonText : 'Cancel'
+                    }, function() {
+                        alert('hi');
+                    });
+                  });
+
+                });
+
+                function deleteProduct(productId){
+
+                  var action = "/products/" + productId;
+
+                  var form = $("#deleteProductForm");
+
+                  form.attr("action", action);
+                  form.submit();
+                }
+              </script>
+
+            <form id="deleteProductForm" method="POST">
+                <input type="hidden" name="_method" value="DELETE"/>
+            </form>
+
+            <div th:each="product : ${products}">
+                <div class="col-lg-4">
+                    <div class="product">
+                        <div class="top">
+                            <p><a th:href="@{/products/{id}(id=${product.id})}" th:text="${product.name}"></a></p>
+                            <div>
+                                <p th:text="${'$AUD ' + product.price}"></p>
+                            </div>
+                        </div>
+                        <div class="bottom">
+
+                            <a th:href="@{/products/{id}/update(id=${product.id})}" >update</a>
+
+                            <input class="btn btn-danger center-block pull-right "
+                                   type="button" data-toggle="modal"
+                                   th:attr="data-target=${'#confirm-delete_' + product.id}" data-target="#confirm-delete_${product.id}" value="Delete Product" />
+
+
+                            <div class="modal fade" th:attr="id=${'confirm-delete_' + product.id}" id="confirm-delete_${product.id}"
+                                 tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <b style="color: red">Confirm</b>
+                                        </div>
+                                        <div class="modal-body">Are you sure to delete the product?</div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Cancel</button>
+                                            <a class="btn btn-danger btn-ok"
+                                               th:attr="onclick=${'deleteProduct(' + product.id + ')'}"
+                                               onclick="deleteProduct('${product.id}')">Yes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div th:replace="layout/layout :: footer"></div>
+
+</body>
+</html>

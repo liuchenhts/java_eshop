@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+    <title>Java eshop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<div th:replace="layout/layout :: header"></div>
+
+
+<div class="body">
+    <div class="row">
+        <p>Read Product</p>
+        <div>
+            <div th:text="${product.id}"></div>
+            <div th:text="${product.name}"></div>
+            <div th:text="${product.price}"></div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout/layout :: footer"></div>
+
+</body>
+</html>
