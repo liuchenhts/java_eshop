@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = -3009157732242241606L;
@@ -17,12 +17,11 @@ public class Product implements Serializable {
     private long id;
 
     @Column(name = "name")
-
     private String name;
 
     private Double price;
 
-    @Column(insertable=false, updatable=false)
+    @Column(insertable = false, updatable = false)
     private Date dateCreated;
 
     public Product() {
